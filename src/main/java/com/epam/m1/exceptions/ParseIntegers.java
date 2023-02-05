@@ -9,6 +9,14 @@ import java.util.List;
  * space delimiter
  */
 public class ParseIntegers {
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
 
     private static final List<String> WORDS =
             Arrays.asList(
@@ -16,16 +24,45 @@ public class ParseIntegers {
                             .split(" "));
 
     public static void main(String[] args) {
+
         Iterator<String> words = WORDS.iterator();
+        boolean isParsable;
         int sum = 0;
         String justWords = "";
-        while (words.hasNext()) {
-            String next = words.next();
-            int number = Integer.parseInt(next);
-            // todo: complete it
-            sum += number;
-            justWords += next + " ";
-        }
+
+            while (words.hasNext()) {
+                    isParsable = true;
+
+                    String next = words.next();
+
+
+                    int number = 0;
+                    try {
+                        Integer.parseInt(next);
+                    }
+                    catch (NumberFormatException e){
+                        isParsable = false;
+                    }
+
+
+                if (isParsable) {
+                    number = Integer.parseInt(next);
+                }
+                // todo: complete it
+                sum += number;
+                String[] arr = next.split(" ");
+                for(int i = 0; i < arr.length; i++){
+                    if(!isNumeric(arr[i])){
+                        justWords += arr[i] + " ";
+                    }
+                }
+
+            }
+
+
+
+
+
         System.out.println("Sum is " + sum);
         System.out.println("Just words:" + justWords);
     }
