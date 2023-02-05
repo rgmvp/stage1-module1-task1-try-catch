@@ -57,6 +57,7 @@ public class ParseIntegers {
                     }
                 }
 
+
             }
 
 
@@ -64,7 +65,7 @@ public class ParseIntegers {
 
 
         System.out.println("Sum is " + sum);
-        System.out.println("Just words:" + justWords);
+        System.out.println("Just words:" + justWords.trim());
     }
 }
 
